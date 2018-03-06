@@ -1,0 +1,18 @@
+.pokemon {
+    max-width: 150px;
+    height: auto;
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+/* .m4 {
+    border: solid black 1px;
+} */
+
+#attack-button {
+    margin-right: auto;
+    margin-left: auto;
+}

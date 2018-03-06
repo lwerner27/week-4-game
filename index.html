@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Meta Data -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Pokemon Battle Game</title>
+        <!-- Materialize Link -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+        <!-- Style Links -->
+        <link rel="stylesheet" href="./assets/css/style.css">
+        <!-- JQuery Link -->
+        <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+        <!-- Javascript Link -->
+        <script src="./assets/javascript/game.js"></script>
+    </head>
+
+    <body>
+        <!-- Navbar -->
+        <nav>
+            <div class="nav-wrapper blue">
+                <a href="#" class="brand-logo center">Pokemon Game</a>
+            </div>
+        </nav>
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col m12 center-align">
+                    <h4>Choose a Pokemon</h4>
+                </div>
+            </div>
+
+            <div class='row'>
+                <div class="col m3 center-align pokemon-div" id="Pikachu">
+                    <h5>Pikachu</h5>
+                    <img src="./assets/images/Pikachu.png" alt="" class="pokemon">
+                    <h5>Health</h5>
+                    <p>200</p>
+                </div>
+                <div class="col m3 center-align pokemon-div" id="Charizard">
+                    <h5>Charizard</h5>
+                    <img src="./assets/images/Charizard.png" alt="" class="pokemon">
+                    <h5>Health</h5>
+                    <p>200</p>
+                </div>
+                <div class="col m3 center-align pokemon-div" id="Blastoise">
+                    <h5>Blastoise</h5>
+                    <img src="./assets/images/Blastoise.png" alt="" class="pokemon">
+                    <h5>Health</h5>
+                    <p>200</p>
+                </div>
+                <div class="col m3 center-align pokemon-div" id="Venusaur">
+                    <h5>Venusaur</h5>
+                    <img src="./assets/images/Venusaur.png" alt="" class="pokemon">
+                    <h5>Health</h5>
+                    <p>200</p>
+                </div>
+            </div>
+
+            <div class="row flex">
+                <div class="col m4" id="your-pokemon">
+
+                </div>
+
+                <div class="col m4 center-align valign-wrapper">
+                    <a class="waves-effect waves-light btn-large blue z-depth-3" id="attack-button">Attack</a>
+                </div>
+
+                <div class="col m4" id="opposing-pokemon">
+
+                </div>
+            </div>
+
+        </div>
+
+    </body>
+
+</html>
