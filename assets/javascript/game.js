@@ -30,7 +30,7 @@ $(document).ready(function() {
         originalAttack: 50,
         attack: 50,
         attackIncrease: 2,
-        counterAttack: 75,
+        counterAttack: 50,
         healthElement: $('#pikachu-health'),
         type: 'Electric',
         weakness:'Ground',
@@ -44,7 +44,7 @@ $(document).ready(function() {
         originalAttack: 50,
         attack: 50,
         attackIncrease: 1.5,
-        counterAttack: 100,
+        counterAttack: 75,
         healthElement: $('#charizard-health'), 
         type: 'Fire',
         weakness: 'Water',
@@ -56,8 +56,8 @@ $(document).ready(function() {
         originalHealth: 200,
         health: 200,
         originalAttack: 50,
-        attack: 50,
-        attackIncrease: 1.5,
+        attack: 60,
+        attackIncrease: 1.75,
         counterAttack: 50,
         healthElement: $('#blastoise-health'),
         type: 'Water',
@@ -165,6 +165,7 @@ $(document).ready(function() {
             playerPokemon.healthElement.html(playerPokemon.health)
             computerPokemon.healthElement.html(computerPokemon.health)
         } else if (computerPokemon.health <= 0) {
+            playerPokemon.attack = playerPokemon.attack * playerPokemon.attackIncrease;
             opposingPokemonDiv.empty();
             whichPlayer = 2
         }
