@@ -29,8 +29,12 @@ $(document).ready(function() {
         health: 200,
         originalAttack: 50,
         attack: 50,
+        attackIncrease: 2,
         counterAttack: 75,
-        healthElement: $('#pikachu-health')
+        healthElement: $('#pikachu-health'),
+        type: 'Electric',
+        weakness:'Ground',
+        resistance: 'Flying'
     }
     // Charizard Object
     let charizard = {
@@ -39,8 +43,12 @@ $(document).ready(function() {
         health: 200,
         originalAttack: 50,
         attack: 50,
+        attackIncrease: 1.5,
         counterAttack: 100,
-        healthElement: $('#charizard-health')
+        healthElement: $('#charizard-health'), 
+        type: 'Fire',
+        weakness: 'Water',
+        resistance: 'Grass'
     }
     // Blastoise Object
     let blastoise = {
@@ -49,8 +57,13 @@ $(document).ready(function() {
         health: 200,
         originalAttack: 50,
         attack: 50,
+        attackIncrease: 1.5,
         counterAttack: 50,
-        healthElement: $('#blastoise-health')
+        healthElement: $('#blastoise-health'),
+        type: 'Water',
+        weakness: 'Grass',
+        resistance: 'Fire'
+
     }
     // Venusaur Object
     let venusaur = {
@@ -59,8 +72,12 @@ $(document).ready(function() {
         health: 200,
         originalAttack: 50,
         attack: 50,
+        attackIncrease: 1.5,
         counterAttack: 25,
-        healthElement: $('#venusaur-health')
+        healthElement: $('#venusaur-health'),
+        type: 'Grass',
+        weakness: 'Fire',
+        resistance: 'Water'
     }
 
     // Function Declarations
@@ -133,8 +150,16 @@ $(document).ready(function() {
     // Does the battle calculations
     function doBattle() {
 
-        computerPokemon.health = computerPokemon.health - playerPokemon.attack
-        
+        // checks if the opposing pokemon is weak or resistant to your pokemon
+        if (playerPokemon.type === computerPokemon.weakness) {
+            computerPokemon.health = computerPokemon.health - (playerPokemon.attack * 2)
+        } else if (playerPokemon.type === computerPokemon.resistance) {
+            computerPokemon.health = computerPokemon.health - (playerPokemon.attack / 2)
+        } else {
+            computerPokemon.health = computerPokemon.health - playerPokemon.attack
+        }
+
+        // Checks if the opposing pokemon has been defeated
         if (computerPokemon.health > 0) {
             playerPokemon.health = playerPokemon.health - computerPokemon.counterAttack
             playerPokemon.healthElement.html(playerPokemon.health)
@@ -143,23 +168,30 @@ $(document).ready(function() {
             opposingPokemonDiv.empty();
             whichPlayer = 2
         }
+
+        // This Checks to see if the player lost after the battle
+        if (playerPokemon.health <=0) {
+            whichPlayer = 3
+            yourPokemonDiv.empty()
+            opposingPokemonDiv.empty()
+        }
         
 
     }
 
-    // On click function
+    // Resets the game and stats 
+    function resetGame () {
+
+    }
+
+    // On click functions
     pokemonDiv.on('click', function(event) {
         let clickedPokemon = this.id
         choosePokemon(clickedPokemon)
     })
 
     attackButton.on('click', function () {
-        if (playerPokemon.health > 0) {
-            doBattle()
-        } else {
-            yourPokemonDiv.empty()
-            opposingPokemonDiv.empty()
-        }
+        doBattle()
     })
 
 
