@@ -2,6 +2,10 @@ $(document).ready(function() {
 
     //change this 2 after player one choses, switch to 3 after choosing first opponent then change back to 2 after a defeat
     let whichPlayer = 1 
+    // Counts how many Pokemon have been defeated
+    let defeatedPokemon = 0
+    // Holds the boolean for if the player wants to play again
+    let playAgain;
     // Designates the player pokemon
     let playerPokemon;
     // Designates the computer pokemon
@@ -43,7 +47,7 @@ $(document).ready(function() {
         health: 200,
         originalAttack: 50,
         attack: 50,
-        attackIncrease: 1.5,
+        attackIncrease: 1.75,
         counterAttack: 75,
         healthElement: $('#charizard-health'), 
         type: 'Fire',
@@ -168,6 +172,8 @@ $(document).ready(function() {
             playerPokemon.attack = playerPokemon.attack * playerPokemon.attackIncrease;
             opposingPokemonDiv.empty();
             whichPlayer = 2
+            defeatedPokemon++;
+            console.log(defeatedPokemon)
         }
 
         // This Checks to see if the player lost after the battle
@@ -182,7 +188,7 @@ $(document).ready(function() {
 
     // Resets the game and stats 
     function resetGame () {
-
+        
     }
 
     // On click functions
@@ -193,6 +199,14 @@ $(document).ready(function() {
 
     attackButton.on('click', function () {
         doBattle()
+
+        if(defeatedPokemon === 3) {
+            playAgain = confirm("Do you want to play again")
+        }
+
+        if (playAgain) {
+            resetGame()
+        }
     })
 
 
