@@ -17,19 +17,19 @@ $(document).ready(function() {
     // Targets Pikachu's div
     let pikachuDiv = $('#Pikachu')
     // Holds the orignal Pikachu div config for reset
-    let originalPikachuDiv = '<div class="col m3 center-align pokemon-div" id="Pikachu"><h5>Pikachu</h5><img src="./assets/images/Pikachu.png" alt="" class="pokemon"><h5>Health</h5><p id="pikachu-health">200</p></div>'
+    let originalPikachuDiv = '<h5>Pikachu</h5><img src="./assets/images/Pikachu.png" alt="" class="pokemon"><h5>Health</h5><p id="pikachu-health">200</p>'
     // Targets Charizards div
     let charizardDiv = $('#Charizard')
     // Holds the original Charizard div config for reset
-    let originalCharizardDiv = '<div class="col m3 center-align pokemon-div" id="Charizard"><h5>Charizard</h5><img src="./assets/images/Charizard.png" alt="" class="pokemon"><h5>Health</h5><p id="charizard-health">200</p></div>'
+    let originalCharizardDiv = '<h5>Charizard</h5><img src="./assets/images/Charizard.png" alt="" class="pokemon"><h5>Health</h5><p id="charizard-health">200</p>'
     // Targets Blastoise div
     let blastoiseDiv = $('#Blastoise')
     // Holds the original Blastoise div config for reset
-    let originalBlastoiseDiv = '<div class="col m3 center-align pokemon-div" id="Blastoise"><h5>Blastoise</h5><img src="./assets/images/Blastoise.png" alt="" class="pokemon"><h5>Health</h5><p id="blastoise-health">200</p></div>'
+    let originalBlastoiseDiv = '<h5>Blastoise</h5><img src="./assets/images/Blastoise.png" alt="" class="pokemon"><h5>Health</h5><p id="blastoise-health">200</p>'
     // Targets Venusaur div
     let venusaurDiv = $('#Venusaur')
     // Holds the original Venusaur div config for reset
-    let originalVenusaurDiv = '<div class="col m3 center-align pokemon-div" id="Venusaur"><h5>Venusaur</h5><img src="./assets/images/Venusaur.png" alt="" class="pokemon"><h5>Health</h5><p id="venusaur-health">200</p></div>'
+    let originalVenusaurDiv = '<h5>Venusaur</h5><img src="./assets/images/Venusaur.png" alt="" class="pokemon"><h5>Health</h5><p id="venusaur-health">200</p>'
     // Targets the your-pokemon div
     let yourPokemonDiv = $('#your-pokemon')
     // Targets the opposing-pokemon div
@@ -240,13 +240,20 @@ $(document).ready(function() {
         $('#pokemon-row').append(blastoiseDiv)
         $('#pokemon-row').append(venusaurDiv)
 
-        console.log(whichPlayer)
+        pikachuDiv.removeClass('m12')
+        charizardDiv.removeClass('m12')
+        blastoiseDiv.removeClass('m12')
+        venusaurDiv.removeClass('m12')
+        pikachuDiv.addClass('m3')
+        charizardDiv.addClass('m3')
+        blastoiseDiv.addClass('m3')
+        venusaurDiv.addClass('m3')
+
 
     }
 
     // On click functions
     $('#pokemon-row').on('click', '.pokemon-div', function(event) {
-        console.log(this.id)
         let clickedPokemon = this.id
         choosePokemon(clickedPokemon)
     })
@@ -265,12 +272,6 @@ $(document).ready(function() {
     
         }
     })
-
-    $('body').click(function (event) {
-        console.log(whichPlayer)
-    })
-
-
 
 });
 
