@@ -10,16 +10,26 @@ $(document).ready(function() {
     let playerPokemon;
     // Designates the computer pokemon
     let computerPokemon;
+    // Targets the instructions box
+    let instructions = $('#instructions')
     // Targets all the pokemond divs
     let pokemonDiv = $('.pokemon-div')
     // Targets Pikachu's div
     let pikachuDiv = $('#Pikachu')
+    // Holds the orignal Pikachu div config for reset
+    let originalPikachuDiv = '<div class="col m3 center-align pokemon-div" id="Pikachu"><h5>Pikachu</h5><img src="./assets/images/Pikachu.png" alt="" class="pokemon"><h5>Health</h5><p id="pikachu-health">200</p></div>'
     // Targets Charizards div
     let charizardDiv = $('#Charizard')
+    // Holds the original Charizard div config for reset
+    let originalCharizardDiv = '<div class="col m3 center-align pokemon-div" id="Charizard"><h5>Charizard</h5><img src="./assets/images/Charizard.png" alt="" class="pokemon"><h5>Health</h5><p id="charizard-health">200</p></div>'
     // Targets Blastoise div
     let blastoiseDiv = $('#Blastoise')
+    // Holds the original Blastoise div config for reset
+    let originalBlastoiseDiv = '<div class="col m3 center-align pokemon-div" id="Blastoise"><h5>Blastoise</h5><img src="./assets/images/Blastoise.png" alt="" class="pokemon"><h5>Health</h5><p id="blastoise-health">200</p></div>'
     // Targets Venusaur div
     let venusaurDiv = $('#Venusaur')
+    // Holds the original Venusaur div config for reset
+    let originalVenusaurDiv = '<div class="col m3 center-align pokemon-div" id="Venusaur"><h5>Venusaur</h5><img src="./assets/images/Venusaur.png" alt="" class="pokemon"><h5>Health</h5><p id="venusaur-health">200</p></div>'
     // Targets the your-pokemon div
     let yourPokemonDiv = $('#your-pokemon')
     // Targets the opposing-pokemon div
@@ -91,61 +101,61 @@ $(document).ready(function() {
         if (whichPlayer === 1) {
             if (arg1 === 'Pikachu') {
                 playerPokemon = pikachu
-                pikachuDiv.removeClass('m4')
+                pikachuDiv.removeClass('m3')
                 pikachuDiv.addClass('m12')
                 yourPokemonDiv.append(pikachuDiv);
-                console.log(playerPokemon)
+                instructions.text('Choose Oppenents Pokemon')
                 whichPlayer = 2
             } else if (arg1 === 'Charizard') {
                 playerPokemon = charizard
-                charizardDiv.removeClass('m4')
+                charizardDiv.removeClass('m3')
                 charizardDiv.addClass('m12')
                 yourPokemonDiv.append(charizardDiv)
-                console.log(playerPokemon)
+                instructions.text('Choose Oppenents Pokemon')
                 whichPlayer = 2
             } else if (arg1 === 'Blastoise') {
                 playerPokemon = blastoise
-                blastoiseDiv.removeClass('m4')
+                blastoiseDiv.removeClass('m3')
                 blastoiseDiv.addClass('m12')
                 yourPokemonDiv.append(blastoiseDiv)
-                console.log(playerPokemon)
+                instructions.text('Choose Oppenents Pokemon')
                 whichPlayer = 2
             } else if (arg1 === 'Venusaur') {
                 playerPokemon = venusaur
-                venusaurDiv.removeClass('m4')
+                venusaurDiv.removeClass('m3')
                 venusaurDiv.addClass('m12')
                 yourPokemonDiv.append(venusaurDiv)
-                console.log(playerPokemon)
+                instructions.text('Choose Oppenents Pokemon')
                 whichPlayer = 2
             }
         } else if (whichPlayer === 2) {
             if (arg1 === 'Pikachu') {
                 computerPokemon = pikachu
-                pikachuDiv.removeClass('m4')
+                pikachuDiv.removeClass('m3')
                 pikachuDiv.addClass('m12')
                 opposingPokemonDiv.append(pikachuDiv);
-                console.log(computerPokemon)
+                instructions.text('Battle!')
                 whichPlayer = 3
             } else if (arg1 === 'Charizard') {
                 computerPokemon = charizard
-                charizardDiv.removeClass('m4')
+                charizardDiv.removeClass('m3')
                 charizardDiv.addClass('m12')
                 opposingPokemonDiv.append(charizardDiv)
-                console.log(computerPokemon)
+                instructions.text('Battle!')
                 whichPlayer = 3
             } else if (arg1 === 'Blastoise') {
                 computerPokemon = blastoise
-                blastoiseDiv.removeClass('m4')
+                blastoiseDiv.removeClass('m3')
                 blastoiseDiv.addClass('m12')
                 opposingPokemonDiv.append(blastoiseDiv)
-                console.log(computerPokemon)
+                instructions.text('Battle!')
                 whichPlayer = 3
             } else if (arg1 === 'Venusaur') {
                 computerPokemon = venusaur
-                venusaurDiv.removeClass('m4')
+                venusaurDiv.removeClass('m3')
                 venusaurDiv.addClass('m12')
                 opposingPokemonDiv.append(venusaurDiv)
-                console.log(computerPokemon)
+                instructions.text('Battle!')
                 whichPlayer = 3
             }
         }
@@ -173,7 +183,9 @@ $(document).ready(function() {
             opposingPokemonDiv.empty();
             whichPlayer = 2
             defeatedPokemon++;
-            console.log(defeatedPokemon)
+            computerPokemon = null;
+            instructions.text('Choose Another Opponent')
+            // console.log(defeatedPokemon)
         }
 
         // This Checks to see if the player lost after the battle
@@ -181,32 +193,81 @@ $(document).ready(function() {
             whichPlayer = 3
             yourPokemonDiv.empty()
             opposingPokemonDiv.empty()
+            instructions.text('You Lose!')
         }
         
 
     }
 
+    // Checks to see if you have defeated all the pokemon
+    function winCheck() {
+        if (defeatedPokemon === 3) {
+
+            instructions.text("You Win!")
+
+            $('#pokemon-row').append('<div class="col m6 center-align option-button" id="yes"><a class="waves-effect waves-light btn-large green">Yes</a></div>')
+            $('#pokemon-row').append('<div class="col m6 center-align option-button" id="no"><a class="waves-effect waves-light btn-large red">No</a></div>')
+        }
+    }
+
+
     // Resets the game and stats 
     function resetGame () {
         
+        defeatedPokemon = 0
+        whichPlayer = 1
+        pikachu.health = pikachu.originalHealth
+        pikachu.attack = pikachu.originalAttack
+        charizard.attack = charizard.originalAttack
+        charizard.health = charizard.originalHealth
+        blastoise.attack = blastoise.originalAttack
+        blastoise.health = blastoise.originalHealth
+        venusaur.attack = venusaur.originalAttack
+        venusaur.health = venusaur.originalHealth
+
+        $('#pokemon-row').empty()
+        yourPokemonDiv.empty()
+        opposingPokemonDiv.empty()
+        instructions.text('Choose Your Pokemon')
+
+        pikachuDiv.html(originalPikachuDiv)
+        charizardDiv.html(originalCharizardDiv)
+        blastoiseDiv.html(originalBlastoiseDiv)
+        venusaurDiv.html(originalVenusaurDiv)
+
+        $('#pokemon-row').append(pikachuDiv)
+        $('#pokemon-row').append(charizardDiv)
+        $('#pokemon-row').append(blastoiseDiv)
+        $('#pokemon-row').append(venusaurDiv)
+
+        console.log(whichPlayer)
+
     }
 
     // On click functions
-    pokemonDiv.on('click', function(event) {
+    $('#pokemon-row').on('click', '.pokemon-div', function(event) {
+        console.log(this.id)
         let clickedPokemon = this.id
         choosePokemon(clickedPokemon)
     })
 
     attackButton.on('click', function () {
         doBattle()
+        winCheck();
+    })
 
-        if(defeatedPokemon === 3) {
-            playAgain = confirm("Do you want to play again")
-        }
+    $('#pokemon-row').on('click', '.option-button', function(event) {
+        let playAgain = this.id
 
-        if (playAgain) {
+        if (playAgain === 'yes') {
+
             resetGame()
+    
         }
+    })
+
+    $('body').click(function (event) {
+        console.log(whichPlayer)
     })
 
 
