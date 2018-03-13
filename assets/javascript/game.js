@@ -194,6 +194,11 @@ $(document).ready(function() {
             yourPokemonDiv.empty()
             opposingPokemonDiv.empty()
             instructions.text('You Lose!')
+
+            $('#pokemon-row').empty()
+
+            $('#pokemon-row').append('<div class="col m6 center-align option-button" id="yes"><a class="waves-effect waves-light btn-large green">Yes</a></div>')
+            $('#pokemon-row').append('<div class="col m6 center-align option-button" id="no"><a class="waves-effect waves-light btn-large red">No</a></div>')
         }
         
 
@@ -216,6 +221,8 @@ $(document).ready(function() {
         
         defeatedPokemon = 0
         whichPlayer = 1
+        playerPokemon = null
+        computerPokemon = null
         pikachu.health = pikachu.originalHealth
         pikachu.attack = pikachu.originalAttack
         charizard.attack = charizard.originalAttack
@@ -248,6 +255,11 @@ $(document).ready(function() {
         charizardDiv.addClass('m3')
         blastoiseDiv.addClass('m3')
         venusaurDiv.addClass('m3')
+
+        pikachu.healthElement = $('#pikachu-health')
+        charizard.healthElement = $('#charizard-health')
+        blastoise.healthElement = $('#blastoise-health')
+        venusaur.healthElement = $('#venusaur-health')
 
 
     }
